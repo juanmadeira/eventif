@@ -5,8 +5,7 @@ class HomeTest(TestCase):
         self.response = self.client.get('/')
 
     def test_get(self):
-        self.assertEqual(200, response.status_code)
+        self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        response = self.client.get('/')
-        self.assertTemplateUsesd(response, 'index.html')
+        self.assertTemplateUsesd(self.response, 'index.html')
