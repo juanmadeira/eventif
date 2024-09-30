@@ -77,7 +77,7 @@ WSGI_APPLICATION = "eventif.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite')
+default_dburl = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
 
 DATABASES = {
     "default": {
