@@ -30,7 +30,7 @@ class SubscribeTeste(TestCase):
 
 class SubscribePostTest(TestCase):
     def setUp(self):
-        data = dict(name="Cleber Fonseca", cpf="12345678901", email='profcleberfonseca@gmail.com', phone="53-12345-6789")
+        data = dict(name="Juan Madeira", cpf="12345678901", email='21133654+juanmadeira@users.noreply.github.com', phone="53-12345-6789")
         self.resp = self.client.post('/inscricao/', data)
 
     def test_post(self):
@@ -51,14 +51,14 @@ class SubscribePostTest(TestCase):
 
     def test_subscription_email_to(self):
         email = mail.outbox[0]
-        expect = ['contato@eventif.com.br', 'profcleberfonseca@gmail.com']
+        expect = ['contato@eventif.com.br', '21133654+juanmadeira@users.noreply.github.com']
         self.assertEqual(expect, email.to)
 
     def test_subscription_email_body(self):
         email = mail.outbox[0]
-        self.assertIn('Cleber Fonseca', email.body)
+        self.assertIn('Juan Madeira', email.body)
         self.assertIn('12345678901', email.body)
-        self.assertIn('profcleberfonseca@gmail.com', email.body)
+        self.assertIn('21133654+juanmadeira@users.noreply.github.com', email.body)
         self.assertIn('53-12345-6789', email.body)
 
 class SubscribeInvalidPost(TestCase):
