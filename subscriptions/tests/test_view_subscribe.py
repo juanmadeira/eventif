@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core import mail
 from subscriptions.forms import SubscriptionForm
-
+from subscriptions.models import Subscription
 
 class SubscribeGet(TestCase):
     def setUp(self):
@@ -32,8 +32,11 @@ class SubscribeGet(TestCase):
 
 class SubscribePostValid(TestCase):
     def setUp(self):
-        data = dict(name="Juan Madeira", cpf='12345678901',
-                    email='21133654+juanmadeira@users.noreply.github.com', phone='53-12345-6789')
+        data = dict(name="Juan Madeira",
+                    cpf='12345678901',
+                    email='21133654+juanmadeira@users.noreply.github.com',
+                    phone='53-12345-6789'
+                )
         self.resp = self.client.post('/inscricao/', data)
 
     def test_post(self):
@@ -41,6 +44,9 @@ class SubscribePostValid(TestCase):
 
     def test_send_subscription_email(self):
         self.assertEqual(1, len(mail.outbox))
+
+    def test_save_subscription(self):
+        self.assertTrue(Subscription)
 
 
 class SubscribePostInvalid(TestCase):
@@ -62,10 +68,16 @@ class SubscribePostInvalid(TestCase):
         form = self.resp.context['form']
         self.assertTrue(form.errors)
 
+    def test_dont_save_subscription(self):
+        self.assertFalse(Subscription.objects.exist())
+
 
 class SubscribeSuccessMessage(TestCase):
     def test_message(self):
-        data = dict(name="Juan Madeira", cpf='12345678901',
-                    email='21133654+juanmadeira@users.noreply.github.com', phone='53-12345-6789')
+        data = dict(name="Juan Madeira",
+                    cpf='12345678901',
+                    email='21133654+juanmadeira@users.noreply.github.com',
+                    phone='53-12345-6789'
+                )
         resp = self.client.post('/inscricao/', data, follow=True)
         self.assertContains(resp, 'Inscrição realizada com sucesso!')
