@@ -7,9 +7,9 @@ class SubscriptionDetailGet(TestCase):
         name = "Juan Madeira",
         cpf = "12345678901",
         email = "21133654+juanmadeira@users.noreply.github.com",
-        phone = "53-12345-6789"
-    )
-        resp = self.client.get("/inscricao/{}/".format(obj.pk))
+        phone = "53-91234-5678"
+        )
+        self.resp = self.client.get("/inscricao/{}/".format(obj.pk))
 
     def test_get(self):
         self.assertEqual(200, self.resp.status_code)
