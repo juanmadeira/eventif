@@ -1,5 +1,6 @@
 from django.test import TestCase
 from subscriptions.models import Subscription
+from django.shortcuts import resolve_url as r
 
 class SubscriptionDetailGet(TestCase):
     def setUp (self):
@@ -7,9 +8,9 @@ class SubscriptionDetailGet(TestCase):
         name = "Juan Madeira",
         cpf = "12345678901",
         email = "21133654+juanmadeira@users.noreply.github.com",
-        phone = "53-91234-5678"
+        phone = "53-12345-67898"
         )
-        self.resp = self.client.get("/inscricao/{}/".format(obj.pk))
+        self.resp = self.client.get(r('subscriptions:detail', obj.pk))
 
     def test_get(self):
         self.assertEqual(200, self.resp.status_code)
@@ -25,7 +26,7 @@ class SubscriptionDetailGet(TestCase):
         contents = ("Juan Madeira",
                     "123456789",
                     "21133654+juanmadeira@users.noreply.github.com",
-                    "53-91234-5678")
+                    "53-12345-67898")
         with self.subTest():
             for expected in contents:
                 self.assertContains(self.resp, expected)
@@ -33,5 +34,5 @@ class SubscriptionDetailGet(TestCase):
 
 class SubscriptionDetailNotFound(TestCase):
     def test_not_found(self):
-        resp = self.client.get('/inscricao/0/')
+        resp = self.client.get(r('subscriptions:detail', 0))
         self.assertEqual(resp.status_code, 404)
