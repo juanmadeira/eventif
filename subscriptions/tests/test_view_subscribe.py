@@ -36,8 +36,7 @@ class SubscribePostValid(TestCase):
         data = dict(name="Juan Madeira",
                     cpf='12345678901',
                     email='21133654+juanmadeira@users.noreply.github.com',
-                    phone='53-12345-6789'
-                )
+                    phone='53-12345-6789')
         self.resp = self.client.post(r('subscriptions:new'), data)
 
     def test_post(self):

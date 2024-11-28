@@ -5,8 +5,10 @@ from unittest.mock import Mock
 
 class SubscriptionModelAdminTest(TestCase):
     def setUp(self):
-        Subscription.objects.create(name='Juan Madeira', cpf='12345678901',
-                                    email='21133654+juanmadeira@users.noreply.github.com', phone='53-12345-67898')
+        Subscription.objects.create(name='Juan Madeira',
+                                    cpf='12345678901',
+                                    email='21133654+juanmadeira@users.noreply.github.com',
+                                    phone='53-12345-67898')
         self.model_admin = SubscriptionModelAdmin(Subscription, admin.site)
 
     def test_has_action(self):
