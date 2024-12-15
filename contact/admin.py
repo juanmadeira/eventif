@@ -13,11 +13,11 @@ class ContactModelAdmin(admin.ModelAdmin):
     
     contacted_today.short_description = 'Enviada hoje'
     contacted_today.boolean = True
-
+    
     def reply_check(self, obj):
         return obj.response != ""
     
     reply_check.short_description = 'Respondida'
     reply_check.boolean = True
-
+   
 admin.site.register(Contact, ContactModelAdmin)

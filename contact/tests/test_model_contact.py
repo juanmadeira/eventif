@@ -39,4 +39,4 @@ class ContactModelReplyTest(TestCase):
     def test_send_contact_email(self):
         self.obj.response = "Preencha o formulário na página de inscrição."
         self.obj.save()
-        self.assertEqual(0, len(mail.outbox))
+        self.assertEqual(1, len(mail.outbox))
