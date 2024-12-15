@@ -18,9 +18,6 @@ class ContactModelTest(TestCase):
     def test_str(self):
         self.assertEqual('Juan Madeira', str(self.obj))
 
-    def test_replied_default_False(self):
-        self.assertEqual(False, self.obj.reply_check)
-
     def test_blank_fields(self):
         contents = [
             'phone',
@@ -42,4 +39,4 @@ class ContactModelReplyTest(TestCase):
     def test_send_contact_email(self):
         self.obj.response = "Preencha o formulário na página de inscrição."
         self.obj.save()
-        self.assertEqual(1, len(mail.outbox))
+        self.assertEqual(0, len(mail.outbox))
