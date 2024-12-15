@@ -3,7 +3,7 @@ from django.utils.timezone import now
 from contact.models import Contact
 
 class ContactModelAdmin(admin.ModelAdmin):
-    list_display = ('name', 'email', 'phone', 'message', 'created_at', 'contacted_today')
+    list_display = ('name', 'email', 'phone', 'message', 'created_at', 'contacted_today', 'reply_check', 'response', 'reply_created_at')
     search_fields = ('name', 'email', 'phone', 'message', 'created_at')
     date_hierarchy = 'created_at'
 
