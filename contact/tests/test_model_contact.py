@@ -3,7 +3,6 @@ from datetime import datetime
 from contact.models import Contact
 from django.core import mail
 
-#Entry inicial
 class ContactModelTest(TestCase):
     def setUp(self):
         self.obj = Contact.objects.create(name="Juan Madeira",

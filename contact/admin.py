@@ -10,7 +10,7 @@ class ContactModelAdmin(admin.ModelAdmin):
     def contacted_today(self, obj):
         return obj.created_at.date() == now().date()
 
-    contacted_today.short_description = 'Enviada hoje'
+    contacted_today.short_description = 'Enviada hoje?'
     contacted_today.boolean = True
 
 
